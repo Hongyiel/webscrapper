@@ -1,10 +1,35 @@
 <!DOCTYPE import>
+<!-- It will be work in FLASK  -->
   <html>
     <head>
       <title>Job Search</title>
+      <style>
+        section{
+          display:grid;
+          gap:20px;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        </style>
     </head>
     <body>
       <h1>Search Results</h1>
-      <h3>You are lopking for {{searchingBy}}</h3>
+      <h3>Found {{resultsNumber}} results for: {{searchingBy}}</h3>
+      <a href="/export?word={{searchingBy}}">Export to CSV </a>
+      <section>
+        <h4>Title</h4>
+        <h4>Company</h4>
+        <h4>Location</h4>
+        <h4>Link</h4>
+        <!-- flask needed -->
+        {% for apple in jobs %}
+          <span>{{apple.title}}</span>
+          <span>{{apple.company}}</span>
+          <span>{{apple.location}}</span>
+          <a href="{{apple.apply_link}}" target="_blank">Apply</a>
+
+
+        {% endfor %}
+
+      </section>
    </body>
   </html>
